@@ -1,0 +1,18 @@
+ --- VENTA DE MOTOS ---
+--- OPERADORA DE TIENDAS S.A. ---
+VENTA DE MOTOS CHIMALTENANGO
+----- 7A. CALLE 2-02 ZONA 2 -----
+------ Tel: 1234 - 5678 ------
+
+Fecha: 05/28/20
+Nombre: Carlos Hernandez
+NIT: Consumidor Final
+Producto: CRF 450R
+Precio: Q23000.0
+Unidades: 1
+Total: 23000.0
+Efectivo: Q25000.0
+Cambio: Q2000.0
+Impuesto: Q2760.0
+
+GRACIAS POR PREFERIRNOS, VUELVA PRONTO
