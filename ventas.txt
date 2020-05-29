@@ -1,0 +1,5 @@
+05/26/20,Samantha Colon,19323,Pulsar,2000,2,40.0,45.0,90.0,10.0,
+05/26/20,Valentina Nistal,Consumidor Final,Pulsar,2000,2,40.0,45.0,90.0,10.0,
+05/26/20,Byron Par,Consumidor Final,Pulsar,2000,5,40.0,45.0,225.0,25.0,
+05/26/20,Byron Lopez,Consumidor Final,Pulsar,2000,1,40.0,45.0,45.0,5.0,
+05/27/20,Kevin Kaarl,Consumidor Final,Pulsar,2000,2,40.0,45.0,90.0,10.0,
