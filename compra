@@ -1,0 +1,224 @@
+# en este modulo estara el listado de proveedores y el redireccionamiento
+# para agregar unidades y cargos a los productos existentes
+#modulo creado por Brandon Arnulfo Cumatzil Morales
+import os #esta libreeria la utilizaremos para abrir nuestas opciones os
+
+def menucomp(): #Declarando el menu principal de este modulo
+     
+    print("----------Modulo De Proveedores----------") #Mostramos el menu
+    print("1--Ingreso De Proveedores")
+    print("2--Ver el listado de Proveedores")
+    print("3--Modificar Datos de Proveedores")
+    print("4--Eliminar Proveedor")
+    print("5--Ir al menu de inventario para agregar productos")
+    print("6--Retornar al menu principal")
+    print("7--salir del programa")
+    opcion=( int(input("Ingrese la Opcion:"))) #solicitamos el movimiento por medio de una variable numerica
+    if opcion==1: # Y lo validamos con un if 
+        ingresoprov() # Y redireccionamos a las funciones de cada opcion
+    else:
+        if opcion==2:
+            verprov()
+        else:
+            if opcion==3:
+                modprov()
+            else:
+                if opcion==4:
+                    eliminarprov()
+                else:
+                    if opcion==5:
+                        menuinv()
+                    else:
+                        if opcion==6:
+                            menuprin()
+                        else:
+                            if opcion == 7:
+                                salir()
+                            else:    
+                                if opcion<1 or opcion>6:
+                                    print("Opcion Invalida")
+                                    menucomp()
+
+def menuinv():# Programando el menu del inventario
+    print("Aca se adjuntara el menu del inventario para adjuntar lo comprado")
+def ingresoprov():
+    os.system("cls")
+    data = []
+    prov=open("proveedores.txt","a")
+    prov.close()
+    print("Ingreso De Proveedores.....!!!")
+    nombre=input("Ingrese el Nombre del Proveedor:")
+    prov=open("proveedores.txt","r")
+    lineas=prov.read()
+    if nombre in lineas:
+        print("---------------------------------------------")
+        print("El proveedor ya se encuentra registrado Desea modificarlo")
+        print("---------------------------------------------")
+        modprov()
+    else:
+        nit=(str(input("Ingrese Numero de nit del proveedor:")))
+        direccion=(str(input("Ingrese la Direccion :")))
+        email=(str(input("Ingrese el correo del proveedor:")))
+        numero=(int(input("Ingrese el Numero del proveedor:")))
+        while nombre == " ":
+            print("Por favor ingrese un nombre")
+            nombre=input("Ingrese un Nombre:")
+        listado=(nombre,nit,direccion,email,numero)
+        data.append(listado)
+
+        guardar=open("proveedores.txt","a")
+        for listado in data:
+            linea=nombre+","+str(nit)+","+str(direccion)+","+str(email)+","+str(numero)
+            guardar.write(linea + '\n')
+        guardar.close()
+
+    os.system("cls")
+    print("Proveedor Agregado Correctamente") 
+    print("1-)Volver Al Menu")
+    print("2-)Volver al menu Principal")
+    op=(int(input("Ingrese Su Opcion:")))
+    if op==1:
+        menucomp()
+    else:
+        if op==2:
+            menuprin()
+        else:
+            if op<1 or op>2:
+                print("Opcion Incorrecta")
+                print("Redirigiendo Al Menu")
+                menucomp()
+def verprov():
+    os.system("cls")
+    prov=open("proveedores.txt","r")
+    lineas=prov.readlines()
+    prov.close()
+    print("_________________________________")
+    print("_____Catalogo de Proveedores_____")
+    for linea in lineas:
+        leer=linea.split(",")
+        print("Nombre:" + leer[0])
+        print("No. de Nit:" + leer[1])
+        print("Direccion:" + leer[2])
+        print("Correro:" + leer[3])
+        print("Numero telefonico: " + leer[4])
+
+    print("-----Opciones-----")
+    print("1-)Volver Al Menu proveedores")
+    print("2-)Volver al menu principal")
+    op=(int(input("Ingrese Su Opcion:")))
+    if op==1:
+        menucomp()
+    else:
+        if op==2:
+            menuprin()
+        else:
+            if op<1 or op>2:
+                print("Opcion Incorrecta")
+                print("Redirigiendo Al Menu proveedores")
+                menucomp()        
+
+def modprov():
+    os.system("cls")
+    print("-----Modificar Datos del Proveedor-----")
+    prov=open("proveedores.txt","r")
+    lineas=prov.read()
+    nombre=input("Ingrese nombre Del Proveedor:")
+    if nombre in lineas:
+        data = []
+        nit=(str(input("Ingrese Numero de Nit del proveedor:")))
+        direccion=(str(input("Ingrese la Direccion :")))
+        email=(str(input("Ingrese el correo del proveedor:")))
+        numero=(int(input("Ingrese el Numero del proveedor:")))
+        
+        prov=open("proveedores.txt","r")
+        lineas=prov.readlines()
+        prov.close()
+    
+        for linea in lineas:
+            leer=linea.split(",")
+            for a in leer:
+                if a.lower() == nombre.lower():
+                    leer[0]=nombre
+                    leer[1]=nit
+                    leer[2]=direccion
+                    leer[3]=email
+                    leer[4]=numero
+
+                    data.append(leer)
+                    break
+                else:
+                    data.append(leer)
+                    break
+    
+            dato=open("proveedores.txt","w")
+            for linea in data:
+                dato.write(linea[0]+","+str(linea[1])+","+str(linea[2])+","+str(linea[3])+","+str(linea[4]))
+                dato.write("\n")
+            dato.close()
+        print("Agregado Correctamente")
+        print("1-)Volver Al Menu de Proveedores")
+        print("2-)Volver al menu principal")
+        op=(int(input("Ingrese Su Opcion:")))
+        if op==1:
+            menucomp()
+        else:
+            if op==2:
+                menuprin()
+            else:
+                if op<1 or op>2:
+                    print("Opcion Incorrecta")
+                    print("Redirigiendo Al Menu")
+                    menucomp()
+    else:
+        print("El Producto No se Puede Modificar")
+        print("No esta registrado")
+        print("1-)Volver Al Menu Provedores e ingresar la informacion del proveedor")
+        print("2-)Volver Al Menu Principal")
+        op=(int(input("Ingrese Su Opcion:")))
+        if op==1:
+            menucomp()
+        else:
+            if op==2:
+                menuprin()
+            else:
+                if op<1 or op>2:
+                    print("Opcion Incorrecta")
+                    print("Redirigiendo Al Menu de proveedores")
+                    menucomp()
+
+
+
+def eliminarprov():
+    nomprov=input("Ingrese Nombre del proveedor que desea Eliminar:") 
+    prov = open("proveedores.txt","r")
+    lineas = prov.readlines() 
+    prov = open("proveedores.txt","w") 
+    for linea in lineas: 
+        if linea!=nomprov + "," in linea: 
+            print("Se ha eliminado del Inventario")
+        else: 
+            prov.write(linea) 
+    prov.close()   
+    prov.close() 
+
+    print("-----Opciones-----")
+    print("1-)Volver Al Menu de proveedores")
+    print("2-)Ir al menu principal")
+    op=(int(input("Ingrese Su Opcion:")))
+    if op==1:
+        menucomp()
+    else:
+        if op==2:
+            menuprin() #al igual que en estas opciones
+        else:
+            if op<1 or op>2:
+                print("Opcion Incorrecta")
+                print("Redirigiendo Al Menu proveedores")
+                menucomp()
+def menuprin():
+    print("Redireccioando al menu principal...!!!") #aca debe de adjuntar el menu principal
+    menucomp()
+def salir():
+    print("usted a decidido finalizar gracias por utilizar nuestro programa")
+    exit()
+menucomp()#invocamos al menu que le dara inicio a este modulo de proveedores
